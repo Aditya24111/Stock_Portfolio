@@ -33,15 +33,28 @@ app.get('/calculate-return-percentage',(req,res) => {
   res.send(returnPercentage.toString());
 })
 
-app.get('/total-return-percentage',(req,res) => {
-  let stock1 = parseFloat(req.query.stock1);
-  let stock2 = parseFloat(req.query.stock2);
-  let stock3 = parseFloat(req.query.stock3);
-  let stock4 = parseFloat(req.query.stock4);
+app.get('/total-return-percentage', (req, res) => {
+  
+  let boughtAt1 = parseFloat(req.query.boughtAt1);
+  let boughtAt2 = parseFloat(req.query.boughtAt2);
+  let boughtAt3 = parseFloat(req.query.boughtAt3);
+  let boughtAt4 = parseFloat(req.query.boughtAt4);
+  
+  let returns1 = parseFloat(req.query.returns1);
+  let returns2 = parseFloat(req.query.returns2);
+  let returns3 = parseFloat(req.query.returns3);
+  let returns4 = parseFloat(req.query.returns4);
 
-  let totalReturnPercentage = stock1 + stock2 + stock3 + stock4;
+  
+  let totalBoughtAt = boughtAt1 + boughtAt2 + boughtAt3 + boughtAt4;
+  let totalReturns = returns1 + returns2 + returns3 + returns4;
+
+  
+  let totalReturnPercentage = (totalReturns / totalBoughtAt) * 100;
+
+  
   res.send(totalReturnPercentage.toString());
-})
+});
 
 app.get('/status',(req,res) => {
   let returnPercentage = req.query.returnPercentage;
